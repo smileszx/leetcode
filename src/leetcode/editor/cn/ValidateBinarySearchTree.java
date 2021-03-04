@@ -57,8 +57,18 @@ public class ValidateBinarySearchTree{
  * }
  */
 class Solution {
+    long pre = Long.MIN_VALUE;
     public boolean isValidBST(TreeNode root) {
-        return false;
+        if (root == null) return true;
+        if (!isValidBST(root.left)) {
+            return false;
+        }
+        // 判断是否符合题目要求BST
+        if (root.val <= pre) {
+            return false;
+        }
+        pre = root.val;
+        return isValidBST(root.right);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
