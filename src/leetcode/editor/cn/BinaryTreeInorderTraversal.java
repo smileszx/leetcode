@@ -55,7 +55,6 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 //Java：二叉树的中序遍历
