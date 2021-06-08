@@ -16,7 +16,11 @@ public class ReverseLinkedList{
     public static void main(String[] args) {
         Solution solution = new ReverseLinkedList().new Solution();
         // TO TEST
-        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null)))));
+        ListNode head = new ListNode(1,
+                                new ListNode(2,
+                                        new ListNode(3,
+                                                new ListNode(4,
+                                                        new ListNode(5, null)))));
         ListNode listNode = solution.reverseList(head);
         while(listNode != null) {
             System.out.println(listNode.val);
@@ -36,24 +40,43 @@ public class ReverseLinkedList{
  * }
  */
 class Solution {
+
     public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode forward = head;
+        // 校验单链表为空或者只有一个节点，直接返回单链表
+        if (head == null || head.next == null)
+            return head;
+        // 双指针法
         ListNode latter = null;
-        // 前置节点为空时，循环终止
+        ListNode forward = head;
         while (forward != null) {
-            // 前置节点的下个节点存入缓存，否则前置节点修改next后则无法找到下个节点
-            ListNode temp = forward.next;
-            // 前置节点反指
+            ListNode tmpNextNode = forward.next;
+            // 修改next指向
             forward.next = latter;
-            // 后置节点步进至前置节点位置
+            // 平移指针
             latter = forward;
-            // 前置节点后移一步
-            forward = temp;
+            forward = tmpNextNode;
         }
-        // 最终后置节点为逆序成功的单链表
         return latter;
     }
+
+//    public ListNode reverseList(ListNode head) {
+//        if (head == null || head.next == null) return head;
+//        ListNode forward = head;
+//        ListNode latter = null;
+//        // 前置节点为空时，循环终止
+//        while (forward != null) {
+//            // 前置节点的下个节点存入缓存，否则前置节点修改next后则无法找到下个节点
+//            ListNode temp = forward.next;
+//            // 前置节点反指
+//            forward.next = latter;
+//            // 后置节点步进至前置节点位置
+//            latter = forward;
+//            // 前置节点后移一步
+//            forward = temp;
+//        }
+//        // 最终后置节点为逆序成功的单链表
+//        return latter;
+//    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
